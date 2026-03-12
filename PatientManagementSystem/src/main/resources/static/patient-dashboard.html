@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - CareSync</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-heart-pulse"></i> CareSync
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="#appointments"><i class="fa-solid fa-calendar-check"></i> Appointments</a></li>
+                <li><a href="#history"><i class="fa-solid fa-file-medical"></i> Medical History</a></li>
+                <li><a href="#reports"><i class="fa-solid fa-flask"></i> Test Reports</a></li>
+                <li><a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div>
+                    <h2 id="welcomeText">Welcome, Patient</h2>
+                    <p class="text-muted">Here is an overview of your health profile</p>
+                </div>
+                <div class="user-profile">
+                    <span id="patientIdBadge" class="badge badge-success">ID: PT000</span>
+                    <div class="avatar" id="avatarInitial">P</div>
+                </div>
+            </header>
+
+            <div class="grid-cards">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-calendar"></i></div>
+                    <div class="stat-info">
+                        <h3 id="appointmentCount">0</h3>
+                        <p>Upcoming Appointments</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-file-prescription"></i></div>
+                    <div class="stat-info">
+                        <h3 id="medicineCount">0</h3>
+                        <p>Active Prescriptions</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-x-ray"></i></div>
+                    <div class="stat-info">
+                        <h3 id="reportCount">0</h3>
+                        <p>Recent Test Reports</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments Section -->
+            <section id="appointments" class="card-panel">
+                <div class="card-header">
+                    <h3>My Appointments</h3>
+                    <button class="btn btn-primary" onclick="toggleModal('bookModal')">
+                        <i class="fa-solid fa-plus"></i> Book Appointment
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Doctor</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentTableBody">
+                            <tr><td colspan="4">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Book Appointment Modal -->
+    <div class="modal-overlay" id="bookModal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Book New Appointment</h3>
+                <button class="close-modal" onclick="toggleModal('bookModal')">&times;</button>
+            </div>
+            <form id="bookForm">
+                <div class="form-group">
+                    <label>Doctor Name</label>
+                    <input type="text" id="doctorName" class="form-control" placeholder="e.g. Dr. Smith" required>
+                </div>
+                <div class="form-group">
+                    <label>Date & Time</label>
+                    <input type="datetime-local" id="appointmentDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Reason for Visit</label>
+                    <textarea id="reason" class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/patient.js"></script>
+</body>
+</html>
